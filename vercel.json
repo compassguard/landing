@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/health",
+      "destination": "https://api.compassguard.xyz/health"
+    },
+    {
+      "source": "/signup",
+      "destination": "https://api.compassguard.xyz/signup"
+    },
+    {
+      "source": "/v1/:path*",
+      "destination": "https://api.compassguard.xyz/v1/:path*"
+    },
+    {
+      "source": "/skill-onboard.md",
+      "destination": "https://api.compassguard.xyz/skill-onboard.md"
+    },
+    {
+      "source": "/quickstart.md",
+      "destination": "https://api.compassguard.xyz/quickstart.md"
+    }
+  ]
+}
