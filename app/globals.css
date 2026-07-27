@@ -126,51 +126,109 @@ img { max-width: 100%; }
 .partner img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
 .partner:hover, .partner:focus-visible { border-color: var(--emerald); box-shadow: 0 8px 18px rgba(13,31,23,.12); transform: translateY(-1px); }
 
-/* ── how it works: the checkpoint diagram ── */
-.viz {
-  margin-top: 52px;
+/* ── how it works: a proposal running the pipeline ── */
+.pipe { margin-top: 52px; }
+.pipe__stations {
   display: grid;
-  grid-template-columns: 1fr 72px minmax(240px, 1.1fr) 72px 1fr;
-  align-items: center;
+  grid-template-columns: 1fr 84px minmax(250px, 1.05fr) 84px 1fr;
+  align-items: stretch;
   gap: 8px;
 }
-.vnode { padding: 22px; border: 1px solid rgba(13,31,23,.16); border-radius: 16px; background: rgba(244,240,230,.6); }
-.vnode__k { font: 700 10px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: rgba(20,35,29,.55); }
-.vnode__t { margin: 8px 0 0; font: 600 21px/1.15 var(--display); letter-spacing: -.025em; color: var(--ink); }
-.vnode__d { margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: rgba(20,35,29,.7); }
 
-/* connector with a packet travelling toward the checkpoint */
-.wire { position: relative; height: 2px; background: linear-gradient(90deg, rgba(13,31,23,.08), rgba(13,31,23,.22), rgba(13,31,23,.08)); border-radius: 2px; overflow: hidden; }
-.wire__pulse { position: absolute; top: 50%; left: 0; width: 26px; height: 6px; margin-top: -3px; border-radius: 999px; background: linear-gradient(90deg, transparent, var(--emerald), transparent); animation: packet 2.6s cubic-bezier(.55,0,.45,1) infinite; }
-.wire__pulse--slow { background: linear-gradient(90deg, transparent, var(--mint), transparent); animation-duration: 3.1s; animation-delay: .9s; }
-@keyframes packet { 0% { left: -28px; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+/* stations dim until the proposal reaches them */
+.pstation {
+  display: flex; flex-direction: column;
+  padding: 22px; border: 1px solid rgba(13,31,23,.16); border-radius: 16px;
+  background: rgba(244,240,230,.6);
+  opacity: .45; filter: saturate(.5);
+  transition: opacity .45s ease, filter .45s ease, border-color .45s ease, box-shadow .45s ease, transform .45s ease;
+}
+.pstation.is-lit { opacity: 1; filter: none; border-color: rgba(14,163,122,.42); box-shadow: 0 14px 32px rgba(13,31,23,.10); transform: translateY(-2px); }
+.pstation__k { font: 700 10px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: rgba(20,35,29,.55); }
+.pstation__t { margin: 8px 0 0; font: 600 21px/1.15 var(--display); letter-spacing: -.025em; color: var(--ink); }
+.pstation__d { margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: rgba(20,35,29,.7); }
+.pstation__req {
+  margin-top: auto; padding-top: 14px;
+  display: flex; flex-direction: column; gap: 2px;
+  font: 500 11px var(--mono); color: rgba(20,35,29,.6);
+}
+.pstation__req code { font: 700 12px var(--mono); color: var(--ink); word-break: break-word; }
 
-/* the checkpoint itself */
-.core {
+/* the rail the proposal travels along */
+.prail { position: relative; align-self: center; height: 2px; background: rgba(13,31,23,.14); border-radius: 2px; }
+.prail__packet {
+  position: absolute; top: 50%; left: 0; width: 30px; height: 8px; margin-top: -4px;
+  border-radius: 999px; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--emerald), transparent);
+  box-shadow: 0 0 14px rgba(14,163,122,.7);
+}
+[data-phase="travel"] .prail--in .prail__packet { animation: run 1.1s cubic-bezier(.5,0,.5,1) forwards; }
+[data-phase="outcome"][data-verdict="allow"] .prail--out .prail__packet { animation: run 1.1s cubic-bezier(.5,0,.5,1) forwards; }
+@keyframes run { 0% { left: -30px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+
+/* the checkpoint */
+.pcore {
   position: relative; display: flex; flex-direction: column; align-items: center;
-  padding: 30px 22px 24px; border-radius: 24px;
-  border: 1.5px solid var(--emerald);
-  background: radial-gradient(circle at 50% 34%, rgba(95,211,188,.16), transparent 62%), var(--ink);
-  box-shadow: 0 26px 60px rgba(13,31,23,.26);
-  overflow: hidden;
+  padding: 26px 22px 22px; border-radius: 24px; overflow: hidden;
+  border: 1.5px solid rgba(14,163,122,.35);
+  background: radial-gradient(circle at 50% 34%, rgba(95,211,188,.12), transparent 62%), var(--ink);
+  box-shadow: 0 26px 60px rgba(13,31,23,.24);
+  transition: border-color .45s ease, box-shadow .45s ease;
 }
-.core__halo { position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(95,211,188,.22), transparent 58%); animation: halo 5s ease-in-out infinite; }
-@keyframes halo { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
-.core__ring {
-  position: absolute; top: 34%; left: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px;
-  border: 1px solid rgba(95,211,188,.45); border-radius: 50%;
-  animation: sonar 3.4s ease-out infinite;
+.pcore.is-lit { border-color: var(--emerald); }
+.pcore__halo { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at 50% 32%, rgba(95,211,188,.3), transparent 60%); transition: opacity .5s ease; }
+.pcore.is-lit .pcore__halo { opacity: 1; }
+
+/* the scan sweep while it inspects */
+.pcore__scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 44%; opacity: 0;
+  background: linear-gradient(180deg, transparent, rgba(95,211,188,.5), transparent);
 }
-.core__ring--slow { animation-duration: 3.4s; animation-delay: 1.7s; }
-@keyframes sonar { 0% { transform: scale(.55); opacity: .75; } 100% { transform: scale(1.6); opacity: 0; } }
-.core__bot { position: relative; width: min(220px, 62%); height: auto; display: block; filter: drop-shadow(0 12px 26px rgba(0,0,0,.4)); animation: hover 6.5s ease-in-out infinite; }
-@keyframes hover { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
-.core__badge { position: relative; margin-top: 6px; font: 700 10px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--mint); }
-.core__verdicts { position: relative; margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-.core__verdicts .verdict { animation: verdict-tick 4.2s ease-in-out infinite; }
-.core__verdicts .verdict:nth-child(2) { animation-delay: 1.4s; }
-.core__verdicts .verdict:nth-child(3) { animation-delay: 2.8s; }
-@keyframes verdict-tick { 0%,72%,100% { transform: none; box-shadow: none; } 80% { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.35); } }
+[data-phase="inspect"] .pcore__scan { animation: scan 1.5s ease-in-out 2; }
+@keyframes scan { 0% { transform: translateY(-60%); opacity: 0; } 30% { opacity: .9; } 70% { opacity: .9; } 100% { transform: translateY(230%); opacity: 0; } }
+
+.pcore__bot {
+  position: relative; width: min(200px, 60%); height: auto; display: block;
+  filter: drop-shadow(0 12px 26px rgba(0,0,0,.4));
+  transition: filter .5s ease, transform .5s ease;
+}
+[data-phase="inspect"] .pcore__bot { animation: lean 1.5s ease-in-out infinite; }
+@keyframes lean { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-7px) rotate(-1.5deg); } }
+/* the one robot we have, tinted to carry the verdict */
+.pipe[data-verdict="allow"][data-phase="outcome"] .pcore__bot,
+.pipe[data-verdict="allow"][data-phase="rest"] .pcore__bot { filter: drop-shadow(0 0 22px rgba(95,211,188,.75)); }
+.pipe[data-verdict="escalate"][data-phase="outcome"] .pcore__bot,
+.pipe[data-verdict="escalate"][data-phase="rest"] .pcore__bot { filter: drop-shadow(0 0 22px rgba(216,176,106,.8)); }
+.pipe[data-verdict="deny"][data-phase="outcome"] .pcore__bot,
+.pipe[data-verdict="deny"][data-phase="rest"] .pcore__bot { filter: drop-shadow(0 0 22px rgba(168,68,58,.85)) saturate(.65); }
+
+/* the portcullis drops on anything that is not allowed */
+.pcore__gate {
+  position: absolute; top: 0; left: 50%; width: 120px; height: auto;
+  transform: translate(-50%, -110%); opacity: 0; z-index: 3;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,.55));
+}
+.pcore.is-barred .pcore__gate { animation: drop .55s cubic-bezier(.5,0,.75,1) forwards; }
+@keyframes drop { 0% { transform: translate(-50%, -110%); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(-50%, 8%); opacity: 1; } }
+.pcore.is-barred { border-color: var(--rust); box-shadow: 0 26px 60px rgba(13,31,23,.24), inset 0 0 60px rgba(168,68,58,.28); }
+/* an escalation holds rather than bars: amber, pulsing, gate stays up */
+.pcore.is-held { border-color: #D8B06A; box-shadow: 0 26px 60px rgba(13,31,23,.24), inset 0 0 60px rgba(216,176,106,.22); }
+.pcore.is-held .pcore__halo { background: radial-gradient(circle at 50% 32%, rgba(216,176,106,.34), transparent 60%); animation: hold 1.5s ease-in-out infinite; }
+@keyframes hold { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+
+.pcore__badge { position: relative; margin-top: 6px; font: 700 10px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--mint); }
+.pcore__verdicts { position: relative; margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.pcore__verdicts .verdict { transition: opacity .35s ease, transform .35s ease, box-shadow .35s ease; }
+.pcore__verdicts .verdict.is-dim { opacity: .22; }
+.pcore__verdicts .verdict.is-hit { transform: translateY(-3px) scale(1.08); box-shadow: 0 8px 20px rgba(0,0,0,.45); }
+
+/* running commentary under the diagram */
+.pipe__readout {
+  margin-top: 26px; min-height: 44px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  text-align: center;
+}
+.pipe__reason { font-size: 15px; color: rgba(20,35,29,.78); }
 
 .verdict { padding: 3px 9px; border-radius: 999px; font: 700 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 .verdict--allow { color: var(--ink); background: var(--mint); }
@@ -179,11 +237,11 @@ img { max-width: 100%; }
 
 /* staggered entrance, additive only: without JS every piece is simply
    visible, so a failed chunk can never blank the diagram. */
-[data-reveal].is-in .viz > [data-step] { animation: step-in .55s cubic-bezier(.16,1,.3,1) both; }
-[data-reveal].is-in .viz > [data-step="2"] { animation-delay: .10s; }
-[data-reveal].is-in .viz > [data-step="3"] { animation-delay: .20s; }
-[data-reveal].is-in .viz > [data-step="4"] { animation-delay: .32s; }
-[data-reveal].is-in .viz > [data-step="5"] { animation-delay: .42s; }
+[data-reveal].is-in .pipe__stations > * { animation: step-in .55s cubic-bezier(.16,1,.3,1) both; }
+[data-reveal].is-in .pipe__stations > *:nth-child(2) { animation-delay: .10s; }
+[data-reveal].is-in .pipe__stations > *:nth-child(3) { animation-delay: .20s; }
+[data-reveal].is-in .pipe__stations > *:nth-child(4) { animation-delay: .32s; }
+[data-reveal].is-in .pipe__stations > *:nth-child(5) { animation-delay: .42s; }
 @keyframes step-in { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
 
 /* ── heist ── */
@@ -264,10 +322,13 @@ img { max-width: 100%; }
 @media (max-width: 900px) {
   .sec { padding: 64px 0; }
   .beats, .steps, .stats, .team { grid-template-columns: 1fr; }
-  .viz { grid-template-columns: 1fr; gap: 14px; }
-  .wire { width: 2px; height: 46px; justify-self: center; background: linear-gradient(180deg, rgba(13,31,23,.08), rgba(13,31,23,.22), rgba(13,31,23,.08)); }
-  .wire__pulse { width: 6px; height: 26px; top: 0; left: 50%; margin: 0 0 0 -3px; background: linear-gradient(180deg, transparent, var(--emerald), transparent); animation-name: packet-v; }
-  .wire__pulse--slow { background: linear-gradient(180deg, transparent, var(--mint), transparent); }
+  .pipe__stations { grid-template-columns: 1fr; gap: 12px; }
+  .prail { width: 2px; height: 44px; justify-self: center; }
+  .prail__packet { width: 8px; height: 30px; top: 0; left: 50%; margin: 0 0 0 -4px;
+    background: linear-gradient(180deg, transparent, var(--emerald), transparent); }
+  [data-phase="travel"] .prail--in .prail__packet,
+  [data-phase="outcome"][data-verdict="allow"] .prail--out .prail__packet { animation-name: run-v; }
+  .pstation__req { margin-top: 14px; }
   .cmp__row { grid-template-columns: 1fr; gap: 6px; }
   .cmp__said { text-align: left; }
   .rule { flex-direction: column; align-items: flex-start; }
@@ -357,4 +418,4 @@ img { max-width: 100%; }
 .veil__kicker { margin-top: 22px; opacity: 0; color: var(--mint); font: 700 12px var(--mono); letter-spacing: .26em; text-transform: uppercase; text-align: center; }
 .veil__seal { margin-top: 30px; opacity: 0; color: rgba(244,240,230,.5); font: 600 10px var(--mono); letter-spacing: .2em; text-transform: uppercase; }
 
-@keyframes packet-v { 0% { top: -28px; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+@keyframes run-v { 0% { top: -30px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: 100%; opacity: 0; } }

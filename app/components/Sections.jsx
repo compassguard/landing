@@ -1,3 +1,4 @@
+import Pipeline from "./Pipeline";
 import {
   BEATS, COMPARISON, CONTACT, GATEWAY_STEPS, PARTNERS, RULES, STATS, TEAM,
 } from "../content";
@@ -48,48 +49,7 @@ export function HowItWorks() {
           lede="Compass sits between the agent and financial execution on Solana and x402 rails, checking every action against your mandate before a signature exists."
         />
 
-        <div className="viz">
-          <article className="vnode" data-step="1">
-            <div className="vnode__k">Agent</div>
-            <div className="vnode__t">Proposes</div>
-            <p className="vnode__d">Payments, tool calls, transactions.</p>
-          </article>
-
-          <div className="wire" data-step="2" aria-hidden="true">
-            <span className="wire__pulse" />
-          </div>
-
-          <div className="core" data-step="3">
-            <div className="core__halo" aria-hidden="true" />
-            <div className="core__ring" aria-hidden="true" />
-            <div className="core__ring core__ring--slow" aria-hidden="true" />
-            <img
-              className="core__bot"
-              src="/art/guardian.webp"
-              alt="The Compass Guardian inspecting a request before it is signed"
-              width="220"
-              height="220"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="core__badge">Compass</div>
-            <div className="core__verdicts">
-              <span className="verdict verdict--allow">Allow</span>
-              <span className="verdict verdict--esc">Escalate</span>
-              <span className="verdict verdict--deny">Deny</span>
-            </div>
-          </div>
-
-          <div className="wire" data-step="4" aria-hidden="true">
-            <span className="wire__pulse wire__pulse--slow" />
-          </div>
-
-          <article className="vnode" data-step="5">
-            <div className="vnode__k">Signer</div>
-            <div className="vnode__t">Settles</div>
-            <p className="vnode__d">Only approved actions reach the chain.</p>
-          </article>
-        </div>
+        <Pipeline />
       </div>
     </section>
   );
