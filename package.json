@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:video-gate": "node check-video-gate.mjs"
   },
   "dependencies": {
     "next": "^15.5.16",
