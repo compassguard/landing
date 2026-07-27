@@ -166,11 +166,18 @@ export default function Intro({ onDone }) {
       e.seal.style.opacity = (ease(seg(t, 0.75, 1)) * (1 - out)).toFixed(3);
     }
 
+    // Run synchronously as well as on the next frame, and keep a slow
+    // heartbeat going. requestAnimationFrame alone is not enough: it is
+    // throttled in backgrounded and offscreen documents and paused during
+    // iOS momentum scrolling, and a coalescing guard keyed on a pending
+    // frame id then wedges shut permanently the first time one is dropped.
     let raf = 0;
     const onScroll = () => {
-      if (raf) return;
+      if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => { raf = 0; frame(); });
+      frame();
     };
+    const keepAlive = setInterval(frame, 400);
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onResize, { passive: true });
     addEventListener("orientationchange", onResize, { passive: true });
@@ -184,6 +191,7 @@ export default function Intro({ onDone }) {
       removeEventListener("orientationchange", onResize);
       removeEventListener("pageshow", onScroll);
       document.removeEventListener("visibilitychange", onScroll);
+      clearInterval(keepAlive);
       if (raf) cancelAnimationFrame(raf);
       if (settle) cancelAnimationFrame(settle);
     };

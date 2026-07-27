@@ -4,3 +4,7 @@ out/
 *.log
 .env*
 .vercel
+
+# local tooling / large source art
+.opencode/
+*.zip

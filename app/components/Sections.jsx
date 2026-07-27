@@ -40,36 +40,55 @@ export function BackedBy() {
 
 export function HowItWorks() {
   return (
-    <section className="sec" data-reveal>
+    <section className="sec" id="how" data-reveal>
       <div className="shell">
         <Head
           eyebrow="How it works"
           title="Nothing reaches the signer without passing Compass first."
           lede="Compass sits between the agent and financial execution on Solana and x402 rails, checking every action against your mandate before a signature exists."
         />
-        <div className="grid flow">
-          <div className="node">
-            <div className="node__k">Agent</div>
-            <div className="node__t">Proposes</div>
-            <p className="node__d">Payments, tool calls, transactions.</p>
+
+        <div className="viz">
+          <article className="vnode" data-step="1">
+            <div className="vnode__k">Agent</div>
+            <div className="vnode__t">Proposes</div>
+            <p className="vnode__d">Payments, tool calls, transactions.</p>
+          </article>
+
+          <div className="wire" data-step="2" aria-hidden="true">
+            <span className="wire__pulse" />
           </div>
-          <div className="arrow" aria-hidden="true">▶</div>
-          <div className="node node--mid">
-            <div className="node__k">Compass</div>
-            <div className="node__t">Verifies</div>
-            <p className="node__d">Checks the action against your mandate — the effect, not the amount.</p>
-            <div className="verdicts">
+
+          <div className="core" data-step="3">
+            <div className="core__halo" aria-hidden="true" />
+            <div className="core__ring" aria-hidden="true" />
+            <div className="core__ring core__ring--slow" aria-hidden="true" />
+            <img
+              className="core__bot"
+              src="/art/guardian.webp"
+              alt="The Compass Guardian inspecting a request before it is signed"
+              width="220"
+              height="220"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="core__badge">Compass</div>
+            <div className="core__verdicts">
               <span className="verdict verdict--allow">Allow</span>
               <span className="verdict verdict--esc">Escalate</span>
               <span className="verdict verdict--deny">Deny</span>
             </div>
           </div>
-          <div className="arrow" aria-hidden="true">▶</div>
-          <div className="node">
-            <div className="node__k">Signer</div>
-            <div className="node__t">Settles</div>
-            <p className="node__d">Only approved actions reach the chain.</p>
+
+          <div className="wire" data-step="4" aria-hidden="true">
+            <span className="wire__pulse wire__pulse--slow" />
           </div>
+
+          <article className="vnode" data-step="5">
+            <div className="vnode__k">Signer</div>
+            <div className="vnode__t">Settles</div>
+            <p className="vnode__d">Only approved actions reach the chain.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -180,39 +199,6 @@ export function Policy() {
               <span>{r.verdict.toUpperCase()}</span>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Guardian() {
-  return (
-    <section className="sec" id="guardian" data-reveal>
-      <div className="shell">
-        <Head
-          eyebrow="The Guardian"
-          title="Meet the sentry that stands at the gate."
-          lede="Compass Guard is embodied by The Guardian: a small autonomous sentry with one job. It reads your guardrails, inspects each request, and opens the portcullis only for actions that belong."
-        />
-        <div className="sentry">
-          <div className="sentry__card">
-            <div className="sentry__k">Sentry // MK-01</div>
-            <div className="sentry__art">
-              <img
-                src="/art/guardian.webp"
-                alt="The Guardian giving a thumbs up"
-                loading="lazy"
-                decoding="async"
-                width="340"
-                height="340"
-              />
-            </div>
-            <div className="sentry__foot">
-              <span>Guardian</span>
-              <span>Compass Guard / on duty</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

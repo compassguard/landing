@@ -100,6 +100,7 @@ export function Reveals() {
       n.style.opacity = "";
       n.style.transform = "";
       n.style.filter = "";
+      n.classList.add("is-in");
     };
     const hide = (n) => {
       n.style.opacity = "0";
