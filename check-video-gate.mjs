@@ -42,7 +42,7 @@ const waitFor = async (condition) => {
 };
 const snapshot = () => evaluate(`(() => {
   const v = document.querySelector('[data-demo]'), stage = document.querySelector('[data-stage]'), landing = document.querySelector('[data-landing]');
-  return { calls: window.__videoGateCalls, metadata: { ...window.__videoGateMetadata, active: window.__videoGateMetadata.active.size }, paused: v.paused, time: v.currentTime,
+  return { calls: window.__videoGateCalls, metadata: { ...window.__videoGateMetadata, active: window.__videoGateActive() }, paused: v.paused, time: v.currentTime,
     stageHidden: getComputedStyle(stage).visibility === 'hidden' || getComputedStyle(stage).display === 'none',
     landingVisible: landing.getAttribute('aria-hidden') === 'false' && !!v.getClientRects().length };
 })()`);
@@ -54,6 +54,18 @@ const instrumentation = await send("Page.addScriptToEvaluateOnNewDocument", { so
   window.__videoGateInstrumented = true;
   window.__videoGateCalls = [];
   window.__videoGateMetadata = { added: 0, removed: 0, active: new Set() };
+  // React DOM attaches its own non-delegated 'loadedmetadata' listener to
+  // every media element it renders and never removes it, so the raw counts
+  // include one listener that is never ours. Arming after load records those
+  // as a baseline and measures the gate's own add/remove balance against it.
+  window.__videoGateBaseline = new Set();
+  window.__videoGateArm = () => {
+    window.__videoGateBaseline = new Set(window.__videoGateMetadata.active);
+    window.__videoGateMetadata.added = 0;
+    window.__videoGateMetadata.removed = 0;
+  };
+  window.__videoGateActive = () =>
+    [...window.__videoGateMetadata.active].filter((l) => !window.__videoGateBaseline.has(l)).length;
   const play = HTMLMediaElement.prototype.play;
   const add = HTMLMediaElement.prototype.addEventListener, remove = HTMLMediaElement.prototype.removeEventListener;
   HTMLMediaElement.prototype.addEventListener = function(type, listener, ...args) {
@@ -85,6 +97,13 @@ const navigate = async (suffix = "") => {
   await evaluate("window.scrollTo(0, 0)");
   await new Promise((resolve) => setTimeout(resolve, 250));
   await waitFor("document.querySelector('[data-demo]') && document.querySelector('[data-stage]') && document.querySelector('[data-landing]')");
+  // Arm only once React's own media listener has actually landed. The
+  // elements above are in the server HTML, so waiting on them alone would
+  // snapshot the baseline before hydration and count React's listener as the
+  // gate's. The page is still at scroll 0 under the intro here, so nothing
+  // the gate registers can be in this baseline.
+  await waitFor("window.__videoGateMetadata.active.size >= 1");
+  await evaluate("window.__videoGateArm()");
 };
 
 try {
@@ -121,7 +140,7 @@ try {
     window.__complete();
   })()`);
   for (let cycle = 1; cycle <= 3; cycle++) {
-    await waitFor(`window.__videoGateMetadata.added === ${cycle} && window.__videoGateMetadata.active.size === 1`);
+    await waitFor(`window.__videoGateMetadata.added === ${cycle} && window.__videoGateActive() === 1`);
     await evaluate("window.__reverse()");
     await waitFor("getComputedStyle(document.querySelector('[data-stage]')).visibility === 'visible' && document.querySelector('[data-landing]').getAttribute('aria-hidden') === 'true'");
     state = await snapshot();

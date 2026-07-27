@@ -1,7 +1,25 @@
+import "./globals.css";
+
 export const metadata = {
-  title: "Compass Guard",
-  description: "Execution firewall for autonomous agents.",
+  metadataBase: new URL("https://compassguard.xyz"),
+  title: "Compass Guard · Execution firewall",
+  description:
+    "Compass Guard is the execution firewall between autonomous agents and financial execution. It verifies every payment, tool call and transaction against your guardrails before anything reaches the signer.",
+  alternates: { canonical: "/" },
+  icons: {
+    icon: "/compass-tab-logo.png",
+    apple: "/compass-brand-logo.png",
+  },
+  openGraph: {
+    title: "Compass Guard · Execution firewall",
+    description: "Your agent moves money only where you authorized.",
+    url: "/",
+    siteName: "Compass Guard",
+    type: "website",
+  },
 };
+
+export const viewport = { themeColor: "#0D1F17" };
 
 export default function RootLayout({ children }) {
   return (
