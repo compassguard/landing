@@ -1,4 +1,5 @@
 import Pipeline from "./Pipeline";
+import TeamCard from "./TeamCard";
 import {
   BEATS, COMPARISON, CONTACT, GATEWAY_STEPS, PARTNERS, RULES, STATS, TEAM,
 } from "../content";
@@ -194,13 +195,7 @@ export function Team() {
       <div className="shell">
         <Head eyebrow="Team" title="Three founders, one owner per area." />
         <div className="grid team">
-          {TEAM.map((p) => (
-            <div className="person" key={p.name}>
-              <div className="person__nm">{p.name}</div>
-              <div className="person__rl">{p.role}</div>
-              <p className="person__bio">{p.bio}</p>
-            </div>
-          ))}
+          {TEAM.map((p) => <TeamCard key={p.name} person={p} />)}
         </div>
       </div>
     </section>

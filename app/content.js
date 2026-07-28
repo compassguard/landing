@@ -80,13 +80,45 @@ export const COMPARISON = [
 ];
 
 export const STATS = [
-  { big: "3", label: "Design partners", body: "Startups actively integrating Compass into money-moving agents." },
-  { big: "+2", label: "In seven days", body: "From one design partner to three in a single week." },
-  { big: "99%", label: "Deterministic", body: "Most verdicts resolve without inference, so decisions stay fast and cheap." },
+  {
+    big: "3",
+    label: "Design partners",
+    body: "Three startups are wiring Compass into agents that already hold funds and move them without a human in the loop. Real integrations against the API, not a signup form.",
+  },
+  {
+    big: "+2",
+    label: "In seven days",
+    body: "One design partner became three inside a single week, which is roughly how fast teams discover that an agent with a wallet is a liability nobody owns.",
+  },
+  {
+    big: "99%",
+    label: "Deterministic",
+    body: "Nearly every verdict resolves against the mandate without model inference. Decisions stay fast, repeatable and cheap to run — the judge is the exception, not the path.",
+  },
 ];
 
+// Bios stay inside what the pitch deck states. These are real people; the
+// copy elaborates on their stated backgrounds and does not invent credentials.
 export const TEAM = [
-  { name: "Ramiro Carnicer", role: "CEO · Vision · Product", bio: "Backend engineer at Mercado Libre — production LLM and agent workflows." },
-  { name: "Lilly Guo", role: "CTO · Tech · Ops", bio: "Cryptography and Solana — owns the signing-path architecture." },
-  { name: "Nicole Sikorski", role: "CMO · GTM", bio: "Binance — positioning and facilitator outreach." },
+  {
+    name: "Ramiro Carnicer",
+    role: "CEO · Vision · Product",
+    bio: "Backend engineer at Mercado Libre, shipping production LLM and agent workflows at scale. Owns product direction and how the mandate model is expressed to the teams that have to live inside it.",
+    linkedin: "https://www.linkedin.com/in/ramirocarnicersouble",
+    photo: "/team/ramiro.jpg",
+  },
+  {
+    name: "Lilly Guo",
+    role: "CTO · Tech · Ops",
+    bio: "Cryptography and Solana. Owns the signing-path architecture — the part of Compass that has to be correct before anything else about the product matters.",
+    linkedin: "https://www.linkedin.com/in/lillyguoai/",
+    photo: "/team/lilly.jpg",
+  },
+  {
+    name: "Nicole Sikorski",
+    role: "CMO · GTM",
+    bio: "Came from Binance. Runs positioning and outreach to the x402 facilitators that are the beachhead — one integration there guards thousands of agents downstream.",
+    linkedin: "https://www.linkedin.com/in/nicole-sikorski",
+    photo: "/team/nicole.jpg",
+  },
 ];

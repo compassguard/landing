@@ -90,12 +90,14 @@ export default function Landing() {
           <Pitch />
           <BackedBy />
           <HowItWorks />
+          {/* Proof of life sits right after the explanation: who is already
+              using it and who built it, before the longer heist narrative. */}
+          <Traction />
+          <Team />
           <Heist />
           <WhyNothingCaught />
           <Gateway />
           <Policy />
-          <Traction />
-          <Team />
           <ClosingCta />
         </main>
         <footer className="foot">
