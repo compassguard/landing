@@ -10,9 +10,9 @@
     "test:video-gate": "node check-video-gate.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "^15.5.16",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
-  },
-  "devDependencies": {}
+  }
 }
