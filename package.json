@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test:video-gate": "node check-video-gate.mjs"
+    "test:video-gate": "node check-video-gate.mjs",
+    "test:beta-click": "node check-beta-tracking.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -10,6 +10,10 @@
       "destination": "https://api.compassguard.xyz/signup"
     },
     {
+      "source": "/events/beta-click",
+      "destination": "https://api.compassguard.xyz/events/beta-click"
+    },
+    {
       "source": "/v1/:path*",
       "destination": "https://api.compassguard.xyz/v1/:path*"
     },
