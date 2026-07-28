@@ -13,6 +13,21 @@ export default function Landing() {
   const videoRef = useRef(null);
   const [entered, setEntered] = useState(false);
 
+  const trackBetaClick = useCallback((event) => {
+    const link = event.target.closest("a");
+    if (!link || link.textContent.trim() !== "Join the beta") return;
+    if (new URL(link.href).href !== new URL(CONTACT).href) return;
+
+    const source = link.closest("[data-nav]")
+      ? "nav"
+      : link.closest(".pitch")
+        ? "hero"
+        : link.closest(".closing")
+          ? "closing"
+          : "unknown";
+    navigator.sendBeacon("/events/beta-click", new Blob([JSON.stringify({ source })], { type: "application/json" }));
+  }, []);
+
   // Video gate: the demo must start exactly once, from zero, and only after
   // the intro has cleared and the card is genuinely on screen.
   //
@@ -82,6 +97,7 @@ export default function Landing() {
         data-landing
         aria-hidden={entered ? "false" : "true"}
         style={{ pointerEvents: entered ? undefined : "none" }}
+        onClick={trackBetaClick}
       >
         <Nav />
         <BetaBanner />
