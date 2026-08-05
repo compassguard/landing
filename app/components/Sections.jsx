@@ -1,4 +1,5 @@
 import Pipeline from "./Pipeline";
+import StatValue from "./StatValue";
 import TeamCard from "./TeamCard";
 import {
   BEATS, COMPARISON, CONTACT, PARTNERS, STATS, TEAM,
@@ -7,7 +8,7 @@ import {
 function Head({ eyebrow, title, lede }) {
   return (
     <>
-      <div className="eyebrow">{eyebrow}</div>
+      {eyebrow ? <div className="eyebrow">{eyebrow}</div> : null}
       <h2 className="h2">{title}</h2>
       {lede ? <p className="lede">{lede}</p> : null}
     </>
@@ -117,14 +118,13 @@ export function Traction() {
     <section className="sec" data-reveal>
       <div className="shell">
         <Head
-          eyebrow="Traction"
           title="Three teams are building with Compass today."
           lede="Real pilots, not a waitlist."
         />
         <div className="grid stats">
           {STATS.map((s) => (
             <div className="stat" key={s.label}>
-              <div className="stat__big">{s.big}</div>
+              <StatValue value={s.big} />
               <div className="stat__lbl">{s.label}</div>
               <p className="stat__d">{s.body}</p>
             </div>
@@ -139,7 +139,7 @@ export function Team() {
   return (
     <section className="sec" id="team" data-reveal>
       <div className="shell">
-        <Head eyebrow="Team" title="Three founders, one owner per area." />
+        <Head title="Three founders, one owner per area." />
         <div className="grid team">
           {TEAM.map((p) => <TeamCard key={p.name} person={p} />)}
         </div>
@@ -153,9 +153,6 @@ export function ClosingCta() {
     <section className="closing" data-reveal>
       <div className="shell">
         <div className="closing__card">
-          <div className="eyebrow" style={{ color: "var(--emerald)" }}>
-            Compass Guard execution firewall
-          </div>
           <h2>Put a governed gateway in front of autonomous execution.</h2>
           <p>Protect agents before they move funds. Verify intent, enforce policy and keep the evidence.</p>
           <div className="closing__actions">

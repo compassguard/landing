@@ -20,7 +20,7 @@ export const BEATS = [
   {
     n: "Beat one",
     title: "The gift nobody read.",
-    body: "A worthless NFT silently expands the wallet's permissions — a $0 move no spending cap flags.",
+    body: "A worthless NFT silently expands the wallet's permissions. A $0 move no spending cap flags.",
     state: "Passed",
     detail: "Exposure: full",
   },
@@ -61,7 +61,7 @@ export const STATS = [
   {
     big: "99%",
     label: "Deterministic",
-    body: "Nearly every verdict resolves against the mandate without model inference. Decisions stay fast, repeatable and cheap to run — the judge is the exception, not the path.",
+    body: "Nearly every verdict resolves against the mandate without model inference. Decisions stay fast, repeatable and cheap to run. The judge is the exception, not the path.",
   },
 ];
 
@@ -70,22 +70,22 @@ export const STATS = [
 export const TEAM = [
   {
     name: "Ramiro Carnicer",
-    role: "CEO · Vision · Product",
+    role: "CEO / Vision / Product",
     bio: "Backend engineer at Mercado Libre, shipping production LLM and agent workflows at scale. Owns product direction and how the mandate model is expressed to the teams that have to live inside it.",
     linkedin: "https://www.linkedin.com/in/ramirocarnicersouble",
     photo: "/team/ramiro.jpg",
   },
   {
     name: "Lilly Guo",
-    role: "CTO · Tech · Ops",
-    bio: "Cryptography and Solana. Owns the signing-path architecture — the part of Compass that has to be correct before anything else about the product matters.",
+    role: "CTO / Tech / Ops",
+    bio: "Cryptography and Solana. Owns the signing-path architecture: the part of Compass that has to be correct before anything else about the product matters.",
     linkedin: "https://www.linkedin.com/in/lillyguoai/",
     photo: "/team/lilly.jpg",
   },
   {
     name: "Nicole Sikorski",
-    role: "CMO · GTM",
-    bio: "Came from Binance. Runs positioning and outreach to the x402 facilitators that are the beachhead — one integration there guards thousands of agents downstream.",
+    role: "CMO / GTM",
+    bio: "Came from Binance. Runs positioning and outreach to the x402 facilitators that are the beachhead: one integration there guards thousands of agents downstream.",
     linkedin: "https://www.linkedin.com/in/nicole-sikorski",
     photo: "/team/nicole.jpg",
   },
