@@ -16,38 +16,6 @@ export const PARTNERS = [
   { name: "Superteam Argentina", href: "https://superteam.ar", logo: "/superteam-ar-logo.svg" },
 ];
 
-export const GATEWAY_STEPS = [
-  {
-    icon: "/art/icon-castle.webp",
-    kicker: "Mandate",
-    title: "Define what the agent may do.",
-    body: "Limits, destinations, tools, tokens, timing and approval requirements become the operating charter.",
-    tags: ["spend caps", "allowlists", "slippage rules"],
-  },
-  {
-    icon: "/art/icon-inspect.webp",
-    kicker: "Evaluation",
-    title: "Inspect the proposed action.",
-    body: "Compass Guard decodes the request, checks policy and classifies risk before the signer is involved.",
-    tags: ["transfer", "swap", "tool call"],
-  },
-  {
-    icon: "/art/icon-lock.webp",
-    kicker: "Record",
-    title: "Leave a traceable decision.",
-    body: "Approvals, blocks and escalations are written with context so teams can review what happened.",
-    tags: ["decision reason", "policy match", "audit log"],
-  },
-];
-
-export const RULES = [
-  { text: "Destination wallet is outside the mandate", tag: "counterparty", verdict: "escalate" },
-  { text: "Swap output token is not approved", tag: "token", verdict: "block" },
-  { text: "Amount is within daily agent limit", tag: "limit", verdict: "approve" },
-  { text: "Slippage exceeds policy threshold", tag: "execution", verdict: "block" },
-  { text: "Recurring condition matches active mandate", tag: "automation", verdict: "approve" },
-];
-
 export const BEATS = [
   {
     n: "Beat one",

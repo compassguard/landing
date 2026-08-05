@@ -265,27 +265,6 @@ img { max-width: 100%; }
 .cmp__said { text-align: right; font: 700 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--rust); }
 .cmp__row--cg .cmp__said { color: var(--mint); }
 
-/* ── gateway ── */
-.steps { grid-template-columns: repeat(3, 1fr); }
-.step { padding: 28px; border: 1px solid rgba(13,31,23,.14); border-radius: 20px; background: rgba(244,240,230,.5); transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease; }
-.step:hover { background: rgba(219,210,195,.7); transform: translateY(-4px); box-shadow: 0 22px 44px rgba(13,31,23,.1); border-color: rgba(14,163,122,.32); }
-.step__icon { display: inline-flex; align-items: center; justify-content: center; width: 84px; height: 84px; margin-bottom: 20px; padding: 6px; border-radius: 16px; border: 1px solid rgba(176,138,78,.32); background: linear-gradient(140deg, rgba(244,240,230,.6), rgba(219,210,195,.35)); box-shadow: inset 0 0 0 1px rgba(244,240,230,.5), 0 6px 18px rgba(13,31,23,.1); overflow: hidden; }
-.step__icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.step__k { font: 700 10px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--emerald); }
-.step h3 { margin: 22px 0 0; font: 600 20px/1.2 var(--display); letter-spacing: -.035em; color: var(--ink); }
-.step p { margin: 12px 0 0; font-size: 14px; line-height: 1.55; color: rgba(20,35,29,.72); }
-.step ul { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-.step li { padding: 4px 10px; border: 1px solid rgba(13,31,23,.14); border-radius: 999px; font: 500 11px var(--mono); letter-spacing: .06em; color: rgba(20,35,29,.66); }
-
-/* ── policy ── */
-.rules { margin-top: 44px; display: flex; flex-direction: column; gap: 10px; }
-.rule { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border: 1px solid rgba(13,31,23,.14); border-radius: 14px; background: rgba(244,240,230,.5); font-size: 15px; color: var(--text); }
-.rule em { font-style: normal; margin-left: 8px; font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.rule span { flex: 0 0 auto; padding: 5px 12px; border-radius: 999px; font: 700 10px var(--mono); letter-spacing: .12em; }
-.rule--escalate span { color: var(--ink); background: #D8B06A; }
-.rule--block span { color: #fff; background: var(--rust); }
-.rule--approve span { color: var(--ink); background: var(--mint); }
-
 /* ── traction + team ── */
 .stats, .team { grid-template-columns: repeat(3, 1fr); }
 .stat { padding: 26px; border: 1px solid rgba(13,31,23,.16); border-radius: 16px; background: rgba(244,240,230,.6); }
@@ -367,7 +346,7 @@ img { max-width: 100%; }
 /* ── responsive ── */
 @media (max-width: 900px) {
   .sec { padding: 64px 0; }
-  .beats, .steps, .stats, .team { grid-template-columns: 1fr; }
+  .beats, .stats, .team { grid-template-columns: 1fr; }
   .pipe__stations { grid-template-columns: 1fr; gap: 12px; }
   .prail { width: 2px; height: 44px; justify-self: center; }
   .prail__packet { width: 8px; height: 30px; top: 0; left: 50%; margin: 0 0 0 -4px;

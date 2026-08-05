@@ -5,7 +5,7 @@ import Intro from "./Intro";
 import Nav from "./Nav";
 import { BetaBanner, Hero, Pitch, Reveals } from "./Hero";
 import {
-  BackedBy, ClosingCta, Gateway, Heist, HowItWorks, Policy, Team, Traction, WhyNothingCaught,
+  BackedBy, ClosingCta, Heist, HowItWorks, Team, Traction, WhyNothingCaught,
 } from "./Sections";
 import { CONTACT, DOCS, X_URL } from "../content";
 
@@ -112,8 +112,6 @@ export default function Landing() {
           <Team />
           <Heist />
           <WhyNothingCaught />
-          <Gateway />
-          <Policy />
           <ClosingCta />
         </main>
         <footer className="foot">

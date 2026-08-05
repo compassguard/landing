@@ -22,8 +22,6 @@ export default function Nav() {
         </a>
         <div className="nav__links">
           <a href="#how">How it works</a>
-          <a href="#gateway">Gateway</a>
-          <a href="#policy">Policy</a>
           <a href="#team">Team</a>
           <a href={QUICKSTART} target="_blank" rel="noopener noreferrer">API docs</a>
           <a href={DOCS} target="_blank" rel="noopener noreferrer">Docs</a>

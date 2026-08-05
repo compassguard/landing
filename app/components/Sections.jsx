@@ -1,7 +1,7 @@
 import Pipeline from "./Pipeline";
 import TeamCard from "./TeamCard";
 import {
-  BEATS, COMPARISON, CONTACT, GATEWAY_STEPS, PARTNERS, RULES, STATS, TEAM,
+  BEATS, COMPARISON, CONTACT, PARTNERS, STATS, TEAM,
 } from "../content";
 
 function Head({ eyebrow, title, lede }) {
@@ -106,60 +106,6 @@ export function WhyNothingCaught() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Gateway() {
-  return (
-    <section className="sec" id="gateway" data-reveal>
-      <div className="shell">
-        <Head
-          eyebrow="The gateway"
-          title="Protection happens before execution, not after damage."
-          lede="Compass Guard is not a dashboard that warns later. It is the gate between agent intent and money movement."
-        />
-        <div className="grid steps">
-          {GATEWAY_STEPS.map((s) => (
-            <article className="step" key={s.kicker}>
-              <span className="step__icon">
-                <img src={s.icon} alt="" loading="lazy" decoding="async" width="84" height="84" />
-              </span>
-              <div className="step__k">{s.kicker}</div>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
-              <ul>
-                {s.tags.map((t) => <li key={t}>{t}</li>)}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Policy() {
-  return (
-    <section className="sec" id="policy" data-reveal>
-      <div className="shell">
-        <Head
-          eyebrow="Policy examples"
-          title="Calm controls for money-moving agents."
-          lede="Use Compass Guard to encode the difference between an action that is technically valid and an action that is actually authorized."
-        />
-        <div className="rules">
-          {RULES.map((r) => (
-            <div className={`rule rule--${r.verdict}`} key={r.text}>
-              <div>
-                {r.text}
-                <em>{r.tag}</em>
-              </div>
-              <span>{r.verdict.toUpperCase()}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>
