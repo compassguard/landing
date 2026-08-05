@@ -62,7 +62,7 @@ export default function TeamCard({ person }) {
       onPointerMove={move}
       onPointerLeave={reset}
       onBlur={reset}
-      aria-label={`${person.name}, ${person.role} — LinkedIn profile (opens in a new tab)`}
+      aria-label={`${person.name}, ${person.role}, LinkedIn profile (opens in a new tab)`}
     >
       <span className="person__sheen" aria-hidden="true" />
 

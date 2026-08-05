@@ -64,15 +64,13 @@ export function Pitch() {
           Your agent moves money only where you <em>authorized.</em>
         </h1>
         <p className="pitch__sub" data-reveal>
-          Compass Guard is the execution firewall between autonomous agents and financial execution.
-          It verifies every payment, tool call and transaction against your guardrails before anything
-          reaches the signer.
+          Compass Guard is the execution firewall for autonomous agents, verifying every transaction
+          against your guardrails before it reaches the signer.
         </p>
         <div className="pitch__actions" data-reveal>
           <a className="btn" href={CONTACT} target="_blank" rel="noopener noreferrer">Join the beta</a>
           <a className="btn btn--ghost" href={DOCS} target="_blank" rel="noopener noreferrer">Read the docs</a>
         </div>
-        <p className="pitch__note" data-reveal>Approve / block / escalate. Every decision recorded.</p>
       </div>
     </section>
   );
