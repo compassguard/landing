@@ -94,15 +94,6 @@ img { max-width: 100%; }
 .nav__links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 13px; font-weight: 600; }
 .nav__links a:not(.btn):hover { color: var(--ink); }
 
-/* ── developer beta banner ── */
-.beta { position: relative; z-index: 1; padding: 14px 20px; color: var(--cream); background: var(--ink); }
-.beta::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(95,211,188,.16), transparent 45%); }
-.beta__in { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; }
-.beta__copy { max-width: 680px; font-size: 14px; font-weight: 600; line-height: 1.45; }
-.beta__actions { display: flex; flex-wrap: wrap; gap: 10px; }
-.beta__btn { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 0 14px; border: 1px solid rgba(244,240,230,.28); border-radius: 999px; color: inherit; background: rgba(244,240,230,.08); font: 700 12px var(--body); cursor: pointer; transition: transform .25s ease, border-color .25s ease, background .25s ease; }
-.beta__btn:hover, .beta__btn:focus-visible { border-color: var(--mint); background: rgba(244,240,230,.18); transform: translateY(-1px); }
-
 /* ── hero ── */
 .hero__card { position: relative; margin: 56px auto 0; background: var(--ink); border: 1px solid rgba(219,210,195,.22); border-radius: 24px; box-shadow: 0 32px 90px rgba(13,31,23,.26); overflow: hidden; }
 .hero__card video { display: block; width: 100%; height: auto; background: var(--ink-deep); }
@@ -116,6 +107,30 @@ img { max-width: 100%; }
 .pitch h1 em { font-style: normal; color: var(--emerald); }
 .pitch__sub { max-width: 660px; color: rgba(20,35,29,.76); font-size: clamp(16px,1.5vw,19px); }
 .pitch__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
+
+/* ── waitlist form (hero + closing) ── */
+.waitlist { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.waitlist__label { font: 700 10px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.waitlist__field { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.waitlist__input {
+  min-height: 42px; min-width: 220px; padding: 0 16px; border-radius: 999px;
+  border: 1px solid rgba(13,31,23,.18); background: rgba(244,240,230,.7); color: var(--text);
+  font: 500 14px var(--body);
+}
+.waitlist__input::placeholder { color: rgba(20,35,29,.42); }
+.waitlist__input:disabled { opacity: .6; }
+.waitlist__btn { white-space: nowrap; }
+.waitlist__error { font: 600 12px var(--body); color: var(--rust); }
+.waitlist--done { font: 600 15px var(--body); color: var(--emerald); }
+
+.waitlist--dark .waitlist__label { color: rgba(244,240,230,.55); }
+.waitlist--dark .waitlist__input { background: rgba(244,240,230,.08); border-color: rgba(244,240,230,.24); color: var(--cream); }
+.waitlist--dark .waitlist__input::placeholder { color: rgba(244,240,230,.42); }
+.waitlist--dark.waitlist--done { color: var(--mint); }
+.waitlist--dark .waitlist__error { color: #E08578; }
+
+.waitlist--lg .waitlist__input { min-height: 58px; padding: 0 22px; font-size: 15px; }
+.waitlist--lg .waitlist__btn { min-height: 58px; padding: 0 30px; border: 2px solid var(--brass); font-size: 15px; box-shadow: 0 0 0 1px rgba(244,240,230,.12), 0 18px 36px rgba(13,31,23,.28); }
 
 /* ── backed by ── */
 .backed { position: relative; z-index: 1; padding: 28px 0; background: var(--cream); }
@@ -388,14 +403,13 @@ img { max-width: 100%; }
   .nav__links a:not(.btn) { display: none; }
 }
 @media (max-width: 720px) {
-  .beta__in, .backed__row { flex-direction: column; align-items: flex-start; }
+  .backed__row { flex-direction: column; align-items: flex-start; }
   .backed__links { justify-content: flex-start; }
 }
 @media (max-width: 560px) {
-  .beta { padding-inline: 0; }
-  .beta__in, .backed__row { width: min(100% - 28px, 1120px); margin: 0 auto; }
-  .beta__actions { width: 100%; }
-  .beta__btn { flex: 1 1 100%; }
+  .backed__row { width: min(100% - 28px, 1120px); margin: 0 auto; }
+  .waitlist__field { width: 100%; }
+  .waitlist__input { flex: 1 1 auto; }
 }
 @media (max-width: 430px) {
   .nav__brand span { display: none; }

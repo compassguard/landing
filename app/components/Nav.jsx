@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CONTACT, DOCS, QUICKSTART } from "../content";
+import { DOCS, QUICKSTART } from "../content";
 
 export default function Nav() {
   const [stuck, setStuck] = useState(false);
@@ -35,8 +35,8 @@ export default function Nav() {
             <a href="#team">Team</a>
             <a href={QUICKSTART} target="_blank" rel="noopener noreferrer">API docs</a>
             <a href={DOCS} target="_blank" rel="noopener noreferrer">Docs</a>
-            <a className="btn" href={CONTACT} target="_blank" rel="noopener noreferrer">
-              Join the beta
+            <a className="btn" href="#waitlist">
+              Join the waitlist
             </a>
           </div>
         </div>
