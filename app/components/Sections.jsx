@@ -1,8 +1,9 @@
 import Pipeline from "./Pipeline";
 import StatValue from "./StatValue";
 import TeamCard from "./TeamCard";
+import WaitlistForm from "./WaitlistForm";
 import {
-  BEATS, COMPARISON, CONTACT, PARTNERS, STATS, TEAM,
+  BEATS, COMPARISON, PARTNERS, STATS, TEAM,
 } from "../content";
 
 function Head({ eyebrow, title, lede }) {
@@ -156,9 +157,7 @@ export function ClosingCta() {
           <h2>Put a governed gateway in front of autonomous execution.</h2>
           <p>Protect agents before they move funds. Verify intent, enforce policy and keep the evidence.</p>
           <div className="closing__actions">
-            <a className="btn btn--lg" href={CONTACT} target="_blank" rel="noopener noreferrer">
-              Join the beta
-            </a>
+            <WaitlistForm variant="dark" size="lg" />
           </div>
         </div>
       </div>

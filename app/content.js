@@ -6,8 +6,6 @@ export const CONTACT = "https://t.me/ram4_dev";
 export const DOCS = "https://docs.compassguard.xyz";
 export const QUICKSTART = "https://api.compassguard.xyz/docs/quickstart";
 export const X_URL = "https://x.com/compass_guard";
-export const SKILL_PROMPT =
-  "Use https://api.compassguard.xyz/skill-onboard.md to guide me through testing Compass Guard.";
 
 export const PARTNERS = [
   { name: "dev3pack", href: "https://x.com/dev3pack", logo: "/dev3pack-logo.png" },

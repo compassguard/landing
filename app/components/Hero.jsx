@@ -1,36 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { CONTACT, DOCS, SKILL_PROMPT } from "../content";
-
-export function BetaBanner() {
-  const [label, setLabel] = useState("Add Compass to your agent");
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(SKILL_PROMPT);
-      setLabel("Copied!");
-    } catch {
-      setLabel("Copy failed");
-    }
-    setTimeout(() => setLabel("Add Compass to your agent"), 1400);
-  };
-
-  return (
-    <aside className="beta" aria-label="Developer beta">
-      <div className="shell beta__in">
-        <p className="beta__copy">
-          Developer beta is open for teams building money-moving agents. Compass verifies agent intent
-          before signing, settlement, or payment execution.
-        </p>
-        <div className="beta__actions">
-          <button className="beta__btn" type="button" onClick={copy}>{label}</button>
-          <a className="beta__btn" href={DOCS} target="_blank" rel="noopener noreferrer">Read the docs</a>
-        </div>
-      </div>
-    </aside>
-  );
-}
+import { useEffect, useRef } from "react";
+import { DOCS } from "../content";
+import WaitlistForm from "./WaitlistForm";
 
 export function Hero({ videoRef }) {
   return (
@@ -68,7 +40,7 @@ export function Pitch() {
           against your guardrails before it reaches the signer.
         </p>
         <div className="pitch__actions" data-reveal>
-          <a className="btn" href={CONTACT} target="_blank" rel="noopener noreferrer">Join the beta</a>
+          <WaitlistForm id="waitlist" />
           <a className="btn btn--ghost" href={DOCS} target="_blank" rel="noopener noreferrer">Read the docs</a>
         </div>
       </div>
