@@ -5,11 +5,14 @@ import { useId, useState } from "react";
 const EMAIL_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
- * Posts to /waitlist (proxied to the core API, see vercel.json). Unlike the old /signup-backed
- * "Join the beta" link, this only records an email — no credential comes back, so success is
- * just a confirmation message, not a key to show the user.
+ * Posts to /signup (proxied to the core API, see vercel.json — /waitlist is rewritten too but
+ * the API has never implemented that path, so every submission there 404'd). /signup accepts
+ * { email } and returns a credential in its response; this form never reads or surfaces it —
+ * a waitlist confirmation isn't a credential hand-off, so success is just a confirmation
+ * message. `source` is optional attribution ("virtuals", …) appended to the body so campaign
+ * traffic can be told apart later.
  */
-export default function WaitlistForm({ id, variant, size }) {
+export default function WaitlistForm({ id, variant, size, source }) {
   const inputId = useId();
   const errorId = `${inputId}-error`;
   const [email, setEmail] = useState("");
@@ -40,10 +43,10 @@ export default function WaitlistForm({ id, variant, size }) {
 
     setStatus("loading");
     try {
-      const response = await fetch("/waitlist", {
+      const response = await fetch("/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: value }),
+        body: JSON.stringify(source ? { email: value, source } : { email: value }),
       });
       if (!response.ok) throw new Error("waitlist request failed");
       setStatus("success");
@@ -55,7 +58,7 @@ export default function WaitlistForm({ id, variant, size }) {
 
   return (
     <form className={classes} id={id} noValidate onSubmit={submit}>
-      <label className="waitlist__label" htmlFor={inputId}>Email</label>
+      <label className="sr-only" htmlFor={inputId}>Email</label>
       <div className="waitlist__field">
         <input
           id={inputId}

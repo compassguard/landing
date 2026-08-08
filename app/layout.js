@@ -1,20 +1,16 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
+// Title, description and canonical are page-specific now that there is more
+// than one landing (/ for Virtuals ACP, /agents for the general pitch) — see
+// each page's own metadata export. This stays with what's true site-wide.
 export const metadata = {
   metadataBase: new URL("https://compassguard.xyz"),
-  title: "Compass Guard · Execution firewall",
-  description:
-    "Compass Guard is the execution firewall between autonomous agents and financial execution. It verifies every payment, tool call and transaction against your guardrails before anything reaches the signer.",
-  alternates: { canonical: "/" },
   icons: {
     icon: "/compass-tab-logo.png",
     apple: "/compass-brand-logo.png",
   },
   openGraph: {
-    title: "Compass Guard · Execution firewall",
-    description: "Your agent moves money only where you authorized.",
-    url: "/",
     siteName: "Compass Guard",
     type: "website",
   },

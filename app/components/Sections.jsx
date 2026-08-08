@@ -6,7 +6,7 @@ import {
   BEATS, COMPARISON, PARTNERS, STATS, TEAM,
 } from "../content";
 
-function Head({ eyebrow, title, lede }) {
+export function Head({ eyebrow, title, lede }) {
   return (
     <>
       {eyebrow ? <div className="eyebrow">{eyebrow}</div> : null}

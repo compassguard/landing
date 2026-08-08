@@ -62,6 +62,15 @@ img { max-width: 100%; }
 .sec--dark .lede { color: rgba(244,240,230,.74); }
 .grid { margin-top: 44px; display: grid; gap: 16px; }
 
+.tag-preview { display: inline-flex; align-items: center; margin-left: 10px; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(176,138,78,.4); background: rgba(176,138,78,.12); color: var(--brass); font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; vertical-align: middle; }
+.code-block { margin-top: 28px; max-width: 720px; padding: 22px 26px; border-radius: 16px; background: var(--ink); border: 1px solid rgba(13,31,23,.14); box-shadow: 0 18px 40px rgba(13,31,23,.14); }
+.code-block code { display: block; font: 500 14px/1.7 var(--mono); color: var(--cream); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.flow-head { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.flow-head .h2, .flow-head .lede { max-width: 640px; }
+.flow-head .code-block { text-align: left; }
+.code-caption { margin-top: 14px; font: 700 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 42px; padding: 0 18px; border-radius: 999px;
@@ -107,6 +116,7 @@ img { max-width: 100%; }
 .pitch h1 em { font-style: normal; color: var(--emerald); }
 .pitch__sub { max-width: 660px; color: rgba(20,35,29,.76); font-size: clamp(16px,1.5vw,19px); }
 .pitch__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
+.pitch__note { font: 700 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 
 /* ── waitlist form (hero + closing) ── */
 .waitlist { display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -295,6 +305,15 @@ img { max-width: 100%; }
 .cmp__row--cg .cmp__what { color: rgba(244,240,230,.76); }
 .cmp__said { text-align: right; font: 700 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--rust); }
 .cmp__row--cg .cmp__said { color: var(--mint); }
+
+/* ── acp mandate ── */
+.rules { margin-top: 44px; display: flex; flex-direction: column; gap: 10px; }
+.rule { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border: 1px solid rgba(13,31,23,.14); border-radius: 14px; background: rgba(244,240,230,.5); font-size: 15px; color: var(--text); }
+.rule em { font-style: normal; margin-left: 8px; font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.rule span { flex: 0 0 auto; padding: 5px 12px; border-radius: 999px; font: 700 10px var(--mono); letter-spacing: .12em; }
+.rule--escalate span { color: var(--ink); background: #D8B06A; }
+.rule--block span { color: #fff; background: var(--rust); }
+.rule--approve span { color: var(--ink); background: var(--mint); }
 
 /* ── traction + team ── */
 .stats, .team { grid-template-columns: repeat(3, 1fr); }

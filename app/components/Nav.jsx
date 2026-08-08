@@ -3,7 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { DOCS, QUICKSTART } from "../content";
 
-export default function Nav() {
+const DEFAULT_LINKS = [
+  { href: "#how", label: "How it works" },
+  { href: "#team", label: "Team" },
+  { href: QUICKSTART, label: "API docs", external: true },
+  { href: DOCS, label: "Docs", external: true },
+];
+
+export default function Nav({ links = DEFAULT_LINKS }) {
   const [stuck, setStuck] = useState(false);
   const sentinelRef = useRef(null);
 
@@ -31,10 +38,11 @@ export default function Nav() {
             <span>Compass Guard</span>
           </a>
           <div className="nav__links">
-            <a href="#how">How it works</a>
-            <a href="#team">Team</a>
-            <a href={QUICKSTART} target="_blank" rel="noopener noreferrer">API docs</a>
-            <a href={DOCS} target="_blank" rel="noopener noreferrer">Docs</a>
+            {links.map((l) => (
+              <a key={l.href} href={l.href} {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                {l.label}
+              </a>
+            ))}
             <a className="btn" href="#waitlist">
               Join the waitlist
             </a>
