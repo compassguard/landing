@@ -4,15 +4,20 @@ import { useEffect, useRef } from "react";
 import { DOCS } from "../content";
 import WaitlistForm from "./WaitlistForm";
 
-export function Hero({ videoRef }) {
+export function Hero({
+  videoRef,
+  src = "/compass-landing-1080p.mp4",
+  poster = "/art/demo-poster.webp",
+  tag = "Compass guard / live demo",
+}) {
   return (
     <section style={{ position: "relative", zIndex: 1 }}>
       <div className="shell hero__card" data-herocard>
         <video
           ref={videoRef}
           data-demo
-          src="/compass-landing-1080p.mp4"
-          poster="/art/demo-poster.webp"
+          src={src}
+          poster={poster}
           muted
           loop
           playsInline
@@ -20,7 +25,7 @@ export function Hero({ videoRef }) {
         />
         <div className="hero__tag">
           <span className="hero__dot" />
-          <span>Compass guard / live demo</span>
+          <span>{tag}</span>
           <span style={{ marginLeft: "auto", color: "var(--mint)" }}>Authorized flow only</span>
         </div>
       </div>

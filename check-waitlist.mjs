@@ -21,8 +21,9 @@ assert.doesNotMatch(sections, /Join the beta/);
 assert.doesNotMatch(hero, /BetaBanner/);
 assert.doesNotMatch(hero, /Developer beta is open/);
 
-// The form posts to /waitlist and never shows an apiKey (unlike /signup).
-assert.match(waitlistForm, /fetch\("\/waitlist"/);
+// The form posts to /signup (the API never implemented /waitlist) and never
+// shows the apiKey /signup returns.
+assert.match(waitlistForm, /fetch\("\/signup"/);
 assert.match(waitlistForm, /method: "POST"/);
 assert.doesNotMatch(waitlistForm, /apiKey/);
 
